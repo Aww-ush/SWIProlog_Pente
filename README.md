@@ -1,0 +1,1 @@
+# SWIProlog_Pente

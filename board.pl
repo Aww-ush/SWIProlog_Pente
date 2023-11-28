@@ -50,12 +50,11 @@ print_board_with_index(Board1, N):-
     print_board(Board1, N).
 
 
-get_piece(Board, Row, Column, Color, Piece):-
+get_piece(Board, Row, Column, Piece) :-
+
     nth0(Row, Board, RequiredRow),
     nth0(Column, RequiredRow, Piece).
    
-is_piece_empty()
-
 insert_piece(Board, Row, Column, Color, NewBoard) :-
     nth0(Row, Board, OldRow),
     replace_column(OldRow, Column, Color, NewRow),
@@ -69,3 +68,13 @@ replace_row(Board, Index, NewRow, NewBoard) :-
     nth0(Index, Board, _, Temp),
     nth0(Index, NewBoard, NewRow, Temp).
 
+is_place_empty(Board, Row, Column):-
+    get_piece(Board, Row, Column, Piece),
+    (Piece = 'O' ->
+        true
+    ;
+        false
+    ).
+get_opposite_color(Color, OppositeColor):-
+    (Color == 'W' -> OppositeColor = 'B');
+    OppositeColor = 'W'.

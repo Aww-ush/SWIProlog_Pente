@@ -27,10 +27,10 @@ coin_toss(HumanColor, ComputerColor) :-
     coin_toss_simulate(ResultFromToss),
     (ResultFromToss = UserInput -> 
         write('You will be white'), nl,
-        HumanColor = 'W',
-        ComputerColor = 'B'
+        HumanColor = 'w',
+        ComputerColor = 'b'
     ; 
         write('You will be black'), nl,
-        HumanColor = 'B',
-        ComputerColor = 'W'
+        HumanColor = 'b',
+        ComputerColor = 'w'
     ).

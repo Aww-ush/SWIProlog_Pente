@@ -1,7 +1,7 @@
 % Predicates for board creation
 
 create_row(0, []).
-create_row(N, ['O' | Rest]) :-
+create_row(N, ['o' | Rest]) :-
     N > 0,
     N1 is N - 1,
     create_row(N1, Rest).
@@ -55,12 +55,12 @@ get_piece(Board, Row, Column, Piece) :-
     nth0(Row, Board, RequiredRow),
     nth0(Column, RequiredRow, Piece).
    
-insert_piece(Board, Row, Column, Color, NewBoard) :-
+insert_piece(Board, Row, Column, Color, InserBoard):-
     nth0(Row, Board, OldRow),
     replace_column(OldRow, Column, Color, NewRow),
-    replace_row(Board, Row, NewRow, NewBoard).
+    replace_row(Board, Row, NewRow, InserBoard).
 
-replace_column(OldRow, Index, Value, NewRow) :-
+replace_column(OldRow, Index, Value, NewRow):-
     nth0(Index, OldRow, _, Temp),
     nth0(Index, NewRow, Value, Temp).
 
@@ -70,11 +70,11 @@ replace_row(Board, Index, NewRow, NewBoard) :-
 
 is_place_empty(Board, Row, Column):-
     get_piece(Board, Row, Column, Piece),
-    (Piece = 'O' ->
+    (Piece = 'o' ->
         true
     ;
         false
     ).
 get_opposite_color(Color, OppositeColor):-
-    (Color == 'W' -> OppositeColor = 'B');
-    OppositeColor = 'W'.
+    (Color == 'w' -> OppositeColor = 'b');
+    OppositeColor = 'w'.
